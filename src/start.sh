@@ -15,10 +15,10 @@ fi
 #Run your instance
 if [[ -z "${TAG}" ]]; then
   echo "Started"
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
 else
   echo "Started with statistic publishing"
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} -P ${TAG} --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -P ${TAG} --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
 fi
 
 
