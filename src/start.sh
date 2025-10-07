@@ -14,9 +14,9 @@ fi
 
 #Run your instance
 if [[ -z "${TAG}" ]]; then
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -P ${TAG} --aes-pwd proxy-secret proxy-multi.conf -M 1
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} -P ${TAG} --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
 else
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) --aes-pwd proxy-secret proxy-multi.conf -M 1
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
 fi
 
 
