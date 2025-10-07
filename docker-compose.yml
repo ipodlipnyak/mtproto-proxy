@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  mtproto:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: "mtproto"
+      #image: telegrammessenger/proxy:latest
+    volumes:
+      - ./proxy-config:/data
+    env_file:
+        - mtproto.env
+    ports:
+      - "443:443"
+    networks:
+      - main
+
+        #volumes:
+        #  proxy-config:
+
+networks:
+  main:
+    name: main
+ #   driver: bridge
+ #  traefik-hub:
+ #    external: true
