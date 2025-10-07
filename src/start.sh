@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #Obtain a secret
 curl -s https://core.telegram.org/getProxySecret -o /config/proxy-secret
@@ -14,9 +14,11 @@ fi
 
 #Run your instance
 if [[ -z "${TAG}" ]]; then
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} -P ${TAG} --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
+  echo "Started"
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf
 else
-  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} --aes-pwd /config/proxy-secret /config/proxy-multi.conf -M 1
+  echo "Started with statistic publishing"
+  mtproto-proxy -u nobody -p 8888 -H 443 -S $(cat /data/secret) -D ${DOMAIN} -P ${TAG} --http-stats --aes-pwd /config/proxy-secret /config/proxy-multi.conf
 fi
 
 

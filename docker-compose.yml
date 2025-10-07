@@ -1,11 +1,9 @@
-version: "3.8"
 services:
   mtproto:
     build:
       context: ./
       dockerfile: Dockerfile
     container_name: "mtproto"
-      #image: telegrammessenger/proxy:latest
     volumes:
       - ./proxy-config:/data
     env_file:
@@ -15,12 +13,6 @@ services:
     networks:
       - main
 
-        #volumes:
-        #  proxy-config:
-
 networks:
   main:
     name: main
- #   driver: bridge
- #  traefik-hub:
- #    external: true
